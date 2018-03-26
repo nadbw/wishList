@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Products
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToProfile()"><ion-icon name="person"></ion-icon></button>
+      <!-- <button ion-button icon-only *ngIf="!userIsLoggedIn()" (click)="goToLogin()"><ion-icon name="log-in"></ion-icon></button> -->
+    </ion-buttons>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="goToAddProductPage()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- <button ion-button block color="primary" (click)="goToCreate()">Create a new Event</button>
+  <button ion-button block color="primary" (click)="goToList()">See Your Events</button> -->
+
+  <ion-card-header>
+    Products
+  </ion-card-header>
+
+  <ion-list>
+    <ion-card-content *ngFor="let product of products | async">
+      <img src="https://www.danielwellington.com/media/staticbucket/media/catalog/product/cache/small_image/dc4095f997835e64a6e07c1125933e12/p/e/petit-melrose-black.png?format=jpg&quality=85&bg-color=fff&width=700&canvas=1:1">
+      <ion-label center><strong>{{ product?.name }}</strong></ion-label>
+      <ion-label center><strong>{{ product?.desc }}</strong></ion-label>
+      <ion-label center><strong>$ {{ product?.cost }}</strong></ion-label>
+      <button ion-button block color="primary" (click)="addToWishList(product?.id)">Add to Wishlist</button>
+    </ion-card-content>
+  </ion-list>
+  
+
+</ion-content>
