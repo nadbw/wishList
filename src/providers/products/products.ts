@@ -88,6 +88,30 @@ export class ProductsProvider {
     return this.productsRef.child(productId);
   }
 
-
+  uploadImage(imageString) : Promise<any>
+  {
+     let image       : string  = 'product-' + new Date().getTime() + '.jpg',
+         storageRef  : any,
+         parseUpload : any;
+  
+     return new Promise((resolve, reject) =>
+     {
+        storageRef       = firebase.storage().ref('products/' + image);
+        parseUpload      = storageRef.putString(imageString, 'data_url');
+  
+        parseUpload.on('state_changed', (_snapshot) =>
+        {
+           
+        },
+        (_err) =>
+        {
+           reject(_err);
+        },
+        (success) =>
+        {
+           resolve(parseUpload.snapshot);
+        });
+     });
+  }
 
 }
